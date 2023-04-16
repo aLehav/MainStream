@@ -1,0 +1,92 @@
+.app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: relative;
+    text-align: left;
+}
+
+.black-section {
+    height: 35%;
+    background-color: lightslategray;
+    color: black;
+    /* position: relative;
+    color: white;
+    text-indent: 30%; */
+}
+
+.yellow-circle {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    position: relative;
+    top: 50%;
+    left: 5%;
+}
+
+.white-section {
+    height: 66.67%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.blue-square {
+    width: 550px;
+    height: 450px;
+    margin: 30px;
+    background-color: rgb(183, 198, 216);
+    border: 5px;
+    border-color: black;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+  }
+
+  /* .square-content {
+    background-color: teal;
+    flex: 1;
+  } */
+
+  .square-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+
+  
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  .image-grid img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+
+  .album-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px;
+    margin: 30px;
+  }
+  
+  .album-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+  
+  .album-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }

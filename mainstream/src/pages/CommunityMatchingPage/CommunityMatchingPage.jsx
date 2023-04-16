@@ -22,7 +22,7 @@ function CommunityMatchingPage({ communities, clickedCommunities, setClickedComm
 
   const handleNextClick = () => {
     // Navigate to the next page
-    navigate('/');
+    navigate('/profile');
   };
 
   return (

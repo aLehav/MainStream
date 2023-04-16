@@ -46,7 +46,7 @@ function App() {
           element={<UserCommunitiesPage communities={communities} clickedCommunities={clickedCommunities}/>}
         />
         <Route path='/profile'
-          element={<ProfilePage user={user} token={access_token}/>}
+          element={<ProfilePage user={user} token={access_token} spotifyApi={spotifyApi}/>}
         />
         {/* <Redirect to='/signin' /> */}
       </Routes>
