@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import "./MainMatchingPage.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import Modal from 'react-modal';
 
 function MainMatchingPage({ user, token }) {
   const [recommendedTracks, setRecommendedTracks] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const playlists = ['0JNZ6fXVVCjnqIFFDAgxBs'];
 
   const fetchPlaylistTracks = async () => {
     const response = await fetch(
-      "https://api.spotify.com/v1/playlists/0JNZ6fXVVCjnqIFFDAgxBs/tracks",
+      "https://api.spotify.com/v1/playlists/"+playlists[0]+"/tracks",
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -82,13 +85,18 @@ const fetchData = async () => {
   }, []);
 
   const handleNext = async () => {
-    await fetchData();
+    setShowModal(true);
   };
 
   const handleReject = async () => {
+    setShowModal(false);
     await fetchData();
   }
 
+  const handleModalClose = async () => {
+    setShowModal(false);
+    await fetchData();
+  }
 
   return (
     <div
@@ -97,6 +105,21 @@ const fetchData = async () => {
         backgroundImage: recommendedTracks[0]?.album?.images[0]?.url && `url(${recommendedTracks[0].album.images[0].url})`
       }}
     >
+    <Modal
+        isOpen={showModal}
+        onRequestClose={() => {handleModalClose()}}
+        contentLabel="Example Modal"
+        ariaHideApp={false}
+      >
+        <h2>Modal Title</h2>
+        <p>Modal Content</p>
+        {playlists.map((playlist, i) => (
+          <div key={i}>
+            Playlist:
+            {playlist}
+          </div>
+        ))}
+    </Modal>
     {recommendedTracks.map(({name, artists, album}) => (
       <div className="song-container" key={name}>
         <img src={album.images[0].url} alt="cover" className="song-cover" />
