@@ -1,0 +1,67 @@
+.genre-page {
+  font-family: 'Inter', sans-serif;
+  color: black;
+  background-color: #DEDEDE;
+  text-align: left;
+  padding: 50px;
+  height: 100vh; /* Set the height to cover the entire screen */
+  box-sizing: border-box; /* Include padding in the height */
+}
+
+h1 {
+  font-size: 48px;
+}
+
+h2 {
+  font-size: 32px;
+}
+
+.genre-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px auto;
+  max-width: 60lh;
+}
+
+.genre-square {
+  width: calc(33.33%/2 - 20px);
+  padding-top: calc(33.33%/4 - 60px);
+  padding-bottom: calc(33.33%/4 - 60px);
+  line-height: 100px;
+  text-align: center;
+  background-color: #F7F7ED;
+  color: black;
+  margin: 10px;
+}
+
+/* Apply alternate background colors to every other row */
+.genre-grid div:nth-child(1),
+.genre-grid div:nth-child(3),
+.genre-grid div:nth-child(5),
+.genre-grid div:nth-child(8),
+.genre-grid div:nth-child(10),
+.genre-grid div:nth-child(12),
+.genre-grid div:nth-child(13),
+.genre-grid div:nth-child(15),
+.genre-grid div:nth-child(17) {
+  background-color: #A29EAD;
+}
+
+
+
+button {
+  font-family: 'Inter', sans-serif;
+  background-color: #F7F7ED;
+  color: black;
+  border: none;
+  padding: 20px 40px; /* Increase the padding */
+  cursor: pointer;
+  margin-top: 20px;
+  float: right;
+  border-radius: 20px;
+  font-size: 1.5em; /* Enlarge the font size */
+}
+
+button:hover {
+  background-color: #A29EAD;
+}

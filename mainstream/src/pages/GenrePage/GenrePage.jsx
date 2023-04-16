@@ -1,38 +1,36 @@
-import React, { useEffect, useState } from "react";
+import React from 'react';
+import './GenrePage.css';
+import { useNavigate } from 'react-router-dom';
 
-function GenrePage({ user, token }) {
-  const [recommendedTracks, setRecommendedTracks] = useState([]);
+function GenrePage() {
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      // Authorization token that must have been created previously. See : https://developer.spotify.com/documentation/web-api/concepts/authorization
-      const topTracksIds = ['0IJFVS4gD6ZPxx46OvZZ6M','0k4d5YPDr1r7FX77VdqWez','4vwHBxN5OGtUqqUWvWClGd','6kHiTIk6sgPpMXaGaiLFli','0oigSejhoNen2EdNAIFcm5'];
+  // An array of the genres to be displayed in the grid
+  const genres = [
+    'Rock', 'Classical', 'Pop', 'Indie', 'K Pop', 'Latin', 
+    'Hip-Hop', 'Jazz', 'Blues', 'Dance', 'Gospel', 'EDM', 
+    'Reggaeton', 'RnB', 'Folk', 'Oldies', '80s', 'Classic Rock'
+  ];
 
-      const response = await fetch(
-        `https://api.spotify.com/v1/recommendations?limit=5&seed_tracks=${topTracksIds.join(',')}`, 
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      const data = await response.json();
-      setRecommendedTracks(data.tracks);
-    };
-
-    fetchData();
-  }, []);
+  const handleNextClick = () => {
+    // Navigate to the next page
+    navigate('/');
+  };
 
   return (
-    <div>
-      {recommendedTracks.map(({name, artists}) => (
-        <p key={name}>
-          {name} by {artists.map(artist => artist.name).join(', ')}
-        </p>
-      ))}
+    <div className="genre-page">
+      <h1>Your favorite genres...</h1>
+      <h2>Description about how this suggests/customizes the songs to you</h2>
+      <div className="genre-grid">
+        {genres.map((genre, index) => (
+          <div className="genre-square" key={index}>
+            {genre}
+          </div>
+        ))}
+      </div>
+      <button onClick={handleNextClick}>Next</button>
     </div>
   );
-};
+}
 
 export default GenrePage;
