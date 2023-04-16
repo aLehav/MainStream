@@ -21,7 +21,7 @@ function UserCommunitiesPage({ communities, clickedCommunities, testprop}){
             </div>
           ))} */}
             {clickedCommunities.map((title, index) => (
-            <div 
+            <div
             className={`community-circle2`} 
             key={index}>
             <Link to="/" style={{ color: "Black", textDecoration: "none", fontSize: "30px"}}>{title}</Link>

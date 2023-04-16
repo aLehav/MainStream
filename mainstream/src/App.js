@@ -21,6 +21,7 @@ function App() {
   const [user, setUser] = useState(null);
   const [access_token, setAccessToken] = useState(null);
   const [clickedCommunities, setClickedCommunities] = useState([]);
+  const [playlist, setPlaylist] = useState("Gym");
 
   const communities = [
     ['Gym', "4RfmVp5Cbqb3oTckjf17o6"], ['Office', "0GTW51Vyz1U7gwbIy0mezR"], ['USC', "5cenpF6YjGxhEWZem0NUCE"], ['Study', "4KwNadVCs3npNPt9aa5KRQ"], ['Party', "0Q4UkzQROHUhO1SXHiLjlZ"], ['Pregame', "21dZhooV02njlh9p0V2gXm"],
@@ -32,7 +33,7 @@ function App() {
     <Router>
       <Routes>
         <Route path='/'
-          element={<SignInPage setAccessToken={setAccessToken} setUser={setUser} setLoggedIn={setLoggedIn} spotifyApi={spotifyApi}/>}
+          element={<SignInPage setAccessToken={setAccessToken} setUser={setUser} setLoggedIn={setLoggedIn} spotifyApi={spotifyApi} setPlaylist={setPlaylist}/>}
         />
         <Route path='/genre'
           element={<GenrePage user={user} token={access_token}/>}
@@ -47,10 +48,10 @@ function App() {
           element={<UserCommunitiesPage communities={communities} clickedCommunities={clickedCommunities}/>}
         />
         <Route path='/profile'
-          element={<ProfilePage user={user} token={access_token} spotifyApi={spotifyApi}/>}
+          element={<ProfilePage user={user} token={access_token} spotifyApi={spotifyApi} communities={communities} clickedCommunities={clickedCommunities}/>}
         />
         <Route path='/communitysongs'
-          element={<CommunitySongsPage communities={communities} clickedCommunities={clickedCommunities}/>}
+          element={<CommunitySongsPage playlist={playlist} token={access_token}/>}
         />
         {/* <Redirect to='/signin' /> */}
       </Routes>

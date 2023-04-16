@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './CommunityMatchingPage.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 function CommunityMatchingPage({ communities, clickedCommunities, setClickedCommunities}) {
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ function CommunityMatchingPage({ communities, clickedCommunities, setClickedComm
 
   const handleNextClick = () => {
     // Navigate to the next page
-    navigate('/main');
+    navigate('/profile');
   };
 
   return (
@@ -45,7 +45,7 @@ function CommunityMatchingPage({ communities, clickedCommunities, setClickedComm
          </div>
        ))}
       </div>
-      <button onClick={handleNextClick}>Next</button>
+      <Link to="/profile"><button onClick={handleNextClick}>Next</button></Link>
     </div>
   );
 }
