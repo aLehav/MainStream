@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import { useNavigate } from "react-router-dom";
+import "./SignInPage.css";
+
 const spotifyApi = new SpotifyWebApi();
 
 function SignInPage( {setAccessToken, setUser, setLoggedIn}) {
@@ -39,11 +41,14 @@ function SignInPage( {setAccessToken, setUser, setLoggedIn}) {
   }, []);
 
   return (
-    <div>
-        <div>
-          <h1>Please sign in to Spotify</h1>
-          <button onClick={handleLogin}>Sign in</button>
-        </div>
+  <div className="signin-container">
+      <div className="background"/>
+      <div className="signin-box">
+      <h1>Sign in to Spotify</h1>
+        <button className="signin-button" onClick={handleLogin}>
+          Sign in
+        </button>
+      </div>
     </div>
   );
 }
