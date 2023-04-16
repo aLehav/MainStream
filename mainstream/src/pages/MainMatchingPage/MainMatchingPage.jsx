@@ -142,6 +142,16 @@ const fetchData = async () => {
         backgroundImage: recommendedTracks[0]?.album?.images[0]?.url && `url(${recommendedTracks[0].album.images[0].url})`
       }}
     >
+    {recommendedTracks[0] && (<iframe
+      title="Spotify Embed: Recommendation Playlist "
+      src={`https://open.spotify.com/embed/track/${recommendedTracks[0].id}?utm_source=generator&theme=0&autoplay=1`}
+      width="30%"
+      height="100%"
+      style={{ minHeight: '360px' }}
+      frameBorder="0"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      loading="lazy"
+    />)}
     <Modal
         isOpen={showModal}
         onRequestClose={() => {handleModalClose()}}
@@ -166,7 +176,7 @@ const fetchData = async () => {
           </div>
         ))}
     </Modal>
-    {recommendedTracks.map(({name, artists, album}) => (
+    {/* {recommendedTracks.map(({name, artists, album}) => (
       <div className="song-container" key={name}>
         <img src={album.images[0].url} alt="cover" className="song-cover" />
         <div className="song-details">
@@ -174,7 +184,7 @@ const fetchData = async () => {
           <p className="song-artist">{artists.map(artist => artist.name).join(', ')}</p>
         </div>
       </div>
-    ))}
+    ))} */}
     <div className="buttons-container">
       <button className="next-button" onClick={handleNext}>
       <FontAwesomeIcon icon={faArrowRight} />
