@@ -5,6 +5,10 @@ import SignInPage from './pages/SignInPage/SignInPage';
 import GenrePage from './pages/GenrePage/GenrePage';
 import CommunityMatchingPage from './pages/CommunityMatchingPage/CommunityMatchingPage'
 
+/* Create a useState variable storing the person's chosen communities and pass the setState and actual
+   variable to CommunityPage, update the variable when someone clicks on one of the communities, and change the color of
+   communities when selected or not selected. Also update CSS if you'd like.
+*/
 
 const spotifyApi = new SpotifyWebApi();
 
