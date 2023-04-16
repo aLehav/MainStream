@@ -14,7 +14,8 @@ function SignInPage( {setAccessToken, setUser, setLoggedIn}) {
     const redirect_uri = "http://localhost:3000/";
 
     // Set the scope for the authentication request
-    const scope = "user-library-read";
+    // const write_scope = "user-library-read";
+    const scope = "playlist-modify-public";
 
     // Create the authorization URL
     const url = `https://accounts.spotify.com/authorize?response_type=token&client_id=${client_id}&client_secret=${client_secret}&redirect_uri=${redirect_uri}&scope=${scope}`;
