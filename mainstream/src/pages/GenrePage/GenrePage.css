@@ -4,12 +4,14 @@
   background-color: #DEDEDE;
   text-align: left;
   padding: 50px;
+  padding-top: 5px;
   height: 100vh; /* Set the height to cover the entire screen */
   box-sizing: border-box; /* Include padding in the height */
 }
 
 h1 {
   font-size: 48px;
+  margin-bottom: 20px;
 }
 
 h2 {
@@ -24,6 +26,7 @@ h2 {
 }
 
 .genre-square {
+  font-family: 'Inter', sans-serif;
   width: calc(33.33%/2 - 20px);
   padding-top: calc(33.33%/4 - 60px);
   padding-bottom: calc(33.33%/4 - 60px);
@@ -32,6 +35,7 @@ h2 {
   background-color: #F7F7ED;
   color: black;
   margin: 10px;
+  font-size: 24px;
 }
 
 /* Apply alternate background colors to every other row */
