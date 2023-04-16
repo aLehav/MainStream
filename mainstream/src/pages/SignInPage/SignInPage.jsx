@@ -9,7 +9,7 @@ function SignInPage( {setAccessToken, setUser, setLoggedIn, spotifyApi}) {
     // Replace with your own client ID
     const client_id = "defc685be1564398bccd4fadf624b911";
     const client_secret = "d88a29b018b84f3a800e035537c252a9";
-    const redirect_uri = "http://localhost:3000/";
+    const redirect_uri = "https://mainstream-ae719.web.app/";
 
     // Set the scope for the authentication request
     // const write_scope = "user-library-read";
