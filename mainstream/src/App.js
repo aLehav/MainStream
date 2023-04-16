@@ -7,6 +7,7 @@ const spotifyApi = new SpotifyWebApi();
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
+  const [access_token, setAccessToken] = useState(null);
 
   const handleLogin = () => {
     // Replace with your own client ID
@@ -30,6 +31,7 @@ function App() {
 
     if (access_token) {
       spotifyApi.setAccessToken(access_token);
+      setAccessToken(access_token)
 
       // Get the user's profile
       spotifyApi.getMe().then((data) => {
@@ -42,7 +44,7 @@ function App() {
   return (
     <div>
       {loggedIn ? (
-        <Home user={user} />
+        <Home user={user} token={access_token} spotifyApi={spotifyApi}/>
       ) : (
         <div>
           <h1>Please sign in to Spotify</h1>
