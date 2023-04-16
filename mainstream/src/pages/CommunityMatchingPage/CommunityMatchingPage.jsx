@@ -45,7 +45,7 @@ function CommunityMatchingPage({ communities, clickedCommunities, setClickedComm
          </div>
        ))}
       </div>
-      <Link to="/profile"><button onClick={handleNextClick}>Next</button></Link>
+      <Link to="/main"><button onClick={handleNextClick}>Next</button></Link>
     </div>
   );
 }

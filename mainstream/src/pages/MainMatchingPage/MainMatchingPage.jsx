@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./MainMatchingPage.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faArrowRight, faHeart, faX } from '@fortawesome/free-solid-svg-icons';
 import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
 
@@ -199,10 +199,10 @@ const fetchData = async () => {
     ))} */}
     <div className="buttons-container">
       <button className="next-button" onClick={handleNext} style={{ backgroundColor: "white"}}>
-      <FontAwesomeIcon icon={faArrowRight} />
+      <FontAwesomeIcon icon={faHeart} />
       </button>
       <button className="reject-button" onClick={handleReject} style={{ backgroundColor: "white"}}>
-      <FontAwesomeIcon icon={faArrowLeft} />
+      <FontAwesomeIcon icon={faX} />
       </button>
     </div>
     </div>
