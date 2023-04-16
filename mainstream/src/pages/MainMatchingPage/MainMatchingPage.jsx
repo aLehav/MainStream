@@ -3,15 +3,69 @@ import "./MainMatchingPage.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import Modal from 'react-modal';
+import SpotifyWebApi from "spotify-web-api-js";
 
-function MainMatchingPage({ user, token }) {
+const spotifyApi = new SpotifyWebApi();
+
+function MainMatchingPage({ user, token, communities, clickedCommunities }) {
   const [recommendedTracks, setRecommendedTracks] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const playlists = ['0JNZ6fXVVCjnqIFFDAgxBs'];
+  const [allTracks, setAllTracks] = useState([]);
+  const [playlists, setPlaylists] = useState([]);
 
-  const fetchPlaylistTracks = async () => {
+  const fetchPlaylists = async () => {
+    const response = await fetch (
+      `https://api.spotify.com/v1/users/${user.id}/playlists`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    const data = await response.json();
+    const playlistids = data.items.map((item) => [item.name, item.id]);
+    const playlists = clickedCommunities.map(clicked => {
+      const community = playlistids.find(c => c[0] === clicked);
+      if (community) {
+        console.log(`${clicked} found`);
+        return community[1];
+      } else {
+        console.log(`${clicked} added as a playlist`);
+        return makePlaylist(clicked);
+      }
+    }).filter(Boolean);
+    console.log(playlists);
+    setPlaylists(playlists);
+    return(playlists);
+  }
+
+  const makePlaylist = async (name) => {
+    try {
+      const response = await fetch(
+        `https://api.spotify.com/v1/users/${user.id}/playlists`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: name,
+          }),
+        }
+      );
+      const data = await response.json();
+      return data.id;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  }
+
+  const fetchPlaylistTracks = async (playlist) => {
     const response = await fetch(
-      "https://api.spotify.com/v1/playlists/"+playlists[0]+"/tracks",
+      "https://api.spotify.com/v1/playlists/"+playlist+"/tracks",
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -21,8 +75,7 @@ function MainMatchingPage({ user, token }) {
   
     const data = await response.json();
     const tracks = data.items.map((item) => item.track.id);
-    const randomTracks = shuffle(tracks).slice(0, 5);
-    return randomTracks;
+    return tracks;
   };
 
   const shuffle = (array) => {
@@ -45,8 +98,9 @@ function MainMatchingPage({ user, token }) {
     return array;
   };
 
-const fetchData = async () => {
-  const topTracksIds = await fetchPlaylistTracks();
+const fetchData = async (tracks) => {
+  
+  const topTracksIds = await shuffle(tracks).slice(0,5);
 
   const response = await fetch(
     `https://api.spotify.com/v1/recommendations?limit=1&seed_tracks=${topTracksIds.join(
@@ -64,7 +118,15 @@ const fetchData = async () => {
 };
 
   useEffect(() => {
-    fetchData();
+    const does = async () => {
+      const playlists = await fetchPlaylists()
+      const tracks = await playlists.map(async playlist => {
+        return await fetchPlaylistTracks(playlist)
+      });
+      setAllTracks(tracks)
+      fetchData(tracks)
+    }
+    does()
 
     // Add event listener for the arrow key press
     const handleArrowPress = async (event) => {
@@ -90,18 +152,59 @@ const fetchData = async () => {
 
   const handleReject = async () => {
     setShowModal(false);
-    await fetchData();
+    await fetchData(allTracks);
   }
 
   const handleModalClose = async () => {
     setShowModal(false);
-    await fetchData();
+    await fetchData(allTracks);
   }
 
   const handleAddSong = async (playlist) => {
       const songUri = recommendedTracks[0].uri;
       console.log(songUri)
       try {
+          // Authorization token that must have been created previously. See : https://developer.spotify.com/documentation/web-api/concepts/authorization
+        const token = 'BQBARu8wL_zDBHxvfLGubDVtaR7BhmcMcCNAWMTiES9tTaladC3j_nEwFc68OLz8U5Akc5UIi4H6CdzqJN64nsp6py4IpW3xvEXY2ouGzPDx1EGEiTV6wzLnpaW6QFOEhdV2o5l2kGDHua81kncdV0d2SVC5tsk9kZ6ZnfFOBWsdwVPc2N64ieNEfZcqVUZsUZ9yKaOAmWc362VJvPdEyf5JUgAVaB59YCf1gArkjaSZeBTLqD7iaorszry4cT27xnQhS4OXAphKSDd3Ual4LGM-5-VI0PRv7P5ITlGGUUYnUyBkSzOulSfiUrjZxQ828OdA1g-iUpYQPSlLAcuFYc8118JHIeo-fDF_0HMs13FHhj4';
+        async function fetchWebApi(endpoint, method, body) {
+        const res = await fetch(`https://api.spotify.com/${endpoint}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          method,
+          body:JSON.stringify(body)
+        });
+        return await res.json();
+      }
+
+      // const tracksUri = [
+        // 'spotify:track:0IJFVS4gD6ZPxx46OvZZ6M','spotify:track:38xXr3MkiKNzNDv4JDJagF','spotify:track:0k4d5YPDr1r7FX77VdqWez','spotify:track:1ayV64ur8VWgc6OPtPRl1q','spotify:track:4vwHBxN5OGtUqqUWvWClGd','spotify:track:3DczK9W32LbRORCP80kz6o','spotify:track:6kHiTIk6sgPpMXaGaiLFli','spotify:track:3lzX0mU3pfXOQRnH0ryZJR','spotify:track:0oigSejhoNen2EdNAIFcm5','spotify:track:10VswkKQPr9AuvtbgB5NXH'
+      // ];
+      const tracksUri = [songUri]
+      const user_id = '21kotrleim5po6yhvs4fjf6zy';
+
+      async function createPlaylist(tracksUri){
+        // return await fetchWebApi(
+        //   `v1/users/${user_id}/playlists`, 'POST', {
+        //     "name": "My recommendation playlist",
+        //     "description": "Playlist created by the tutorial on developer.spotify.com",
+        //     "public": false
+        // }).then(playlist => {
+        //   fetchWebApi(
+        //     `v1/playlists/${playlist.id}/tracks?uris=${tracksUri.join(',')}`,
+        //     'POST'
+        //   );
+        //   return playlist;
+        // })
+        return await fetchWebApi(
+          `v1/playlists/4RfmVp5Cbqb3oTckjf17o6/tracks?uris=${tracksUri.join(',')}`,
+          'POST'
+        );
+      }
+
+      const createdPlaylist = await createPlaylist(tracksUri);
+      console.log(createdPlaylist.name, createdPlaylist.id);
+
       
         // const response = await fetch(`https://api.spotify.com/v1/playlists/${playlist}/tracks`, {
         //   method: 'POST',
