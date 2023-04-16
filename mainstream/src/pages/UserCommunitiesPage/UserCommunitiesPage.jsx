@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './UserCommunitiesPage.css';
 import { useNavigate,Link } from 'react-router-dom';
 
-function UserCommunitiesPage({ communities, clickedCommunities, testprop}){
+function UserCommunitiesPage({ communities, clickedCommunities, setPlaylist}){
        // console.log(clickedCommunities)
     const navigate = useNavigate();
     
@@ -24,11 +24,15 @@ function UserCommunitiesPage({ communities, clickedCommunities, testprop}){
             <div
             className={`community-circle2`} 
             key={index}>
-            <Link to='/'>{title}</Link>
-           <br/>
-            {Math.floor(Math.random() * 999) + 1}
+            <span onClick={() => {
+              setPlaylist(title)
+              navigate('/communitysongs')
+            }} style={{ color: "Black", textDecoration: "none", fontSize: "30px", cursor: "pointer"}}>
+              {title}
+            </span>
+            <p>{Math.floor(Math.random() * 10000) + 1}
             <br/>
-            Listeners
+            Listeners</p>
             </div>
        ))}
         </div>
