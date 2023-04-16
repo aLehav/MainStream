@@ -36,7 +36,7 @@ function SignInPage( {setAccessToken, setUser, setLoggedIn}) {
       spotifyApi.getMe().then((data) => {
         setUser(data);
         setLoggedIn(true);
-        navigate('/main');
+        navigate('/community');
       });
     }
   }, []);
