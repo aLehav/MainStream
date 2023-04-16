@@ -3,6 +3,7 @@ import { getFirestore, collection, onSnapshot, doc, updateDoc, getDoc } from "fi
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import './CommunitySongs.css'
+import { faMusic } from '@fortawesome/free-solid-svg-icons';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -50,30 +51,62 @@ const CommunitySongsPage = ({ playlist }) => {
   }
 
   return (
-    <div>
-      <h1>{playlist}</h1>
-      <ul style={{ listStyle: 'none', margin: '1rem 0' }}>
-        {songs.map((song) => (
-          <li key={song.id} style={{ margin: '1rem 0' }}>
-            <div style={{ display: 'flex', alignItems: 'center', margin: '0.5rem 0' }}>
-              <iframe
-                src={`https://open.spotify.com/embed/track/${song.id}`}
-                width="500"
-                height="120"
-                frameBorder="0"
-                allowtransparency="true"
-                allow="encrypted-media"
-                style={{ marginRight: '1rem' }}
-              ></iframe>
-              <span style={{ fontSize: '1.5rem', fontWeight: 'bold', marginRight: '1rem', display: 'inline-flex', flexDirection: 'column', justifyContent: 'center' }}>{song.votes}
-                <FontAwesomeIcon icon={faChevronUp} style={{ marginLeft: '0.5rem', cursor: 'pointer' }} onClick={() => handleVote(song.id, true)} />
-                <FontAwesomeIcon icon={faChevronDown} style={{ marginLeft: '0.5rem', cursor: 'pointer' }} onClick={() => handleVote(song.id, false)} />
-              </span>
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+  <h1 style={{ display: 'flex', alignItems: 'center' }}>
+    <FontAwesomeIcon icon={faMusic} style={{ marginRight: '1rem' }} />
+    {playlist}
+    <FontAwesomeIcon icon={faMusic} style={{ marginLeft: '1rem' }} />
+  </h1>
+  <ul style={{ listStyle: 'none', margin: '2rem 0', padding: 0 }}>
+    {songs.map((song) => (
+      <li key={song.id} style={{ margin: '-2rem 0' }}>
+        <div style={{ display: 'flex', alignItems: 'center', margin: '0.5rem 0' }}>
+          <iframe
+            src={`https://open.spotify.com/embed/track/${song.id}`}
+            width="500"
+            height="120"
+            frameBorder="0"
+            allowtransparency="true"
+            allow="encrypted-media"
+            style={{ marginRight: '1rem' }}
+          ></iframe>
+          <span style={{ fontSize: '2.2rem', fontWeight: 'bold', display: 'flex', alignItems: 'center' }}>
+            <div style={{ 
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '2.5rem',
+              height: '2.5rem',
+              borderRadius: '50%',
+              backgroundColor: 'white',
+              border: '1px solid black',
+              boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)',
+              marginBottom: '2rem'
+            }}>
+              <FontAwesomeIcon icon={faChevronUp} style={{ cursor: 'pointer' }} onClick={() => handleVote(song.id, true)} />
             </div>
-          </li>
-        ))}
-      </ul>
-    </div>
+            <span style={{marginBottom: '2.0rem', marginTop: '-0.25rem', marginLeft: '.25rem', marginRight: '.25rem'}}>{song.votes}</span>
+            <div style={{ 
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '2.5rem',
+              height: '2.5rem',
+              borderRadius: '50%',
+              backgroundColor: 'white',
+              border: '1px solid black',
+              boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)',
+              marginBottom: '2.3rem'
+            }}>
+              <FontAwesomeIcon icon={faChevronDown} style={{ cursor: 'pointer' }} onClick={() => handleVote(song.id, false)} />
+            </div>
+          </span>
+        </div>
+      </li>
+    ))}
+  </ul>
+</div>
+
   );
 };
 

@@ -8,6 +8,10 @@
     margin-bottom: 1rem;
     transition: box-shadow 0.3s ease-in-out;
   }
+
+  h1{
+    text-align: center;
+  }
   
   .song-container:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
