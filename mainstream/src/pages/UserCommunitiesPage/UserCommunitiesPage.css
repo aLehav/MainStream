@@ -37,7 +37,7 @@
     padding-bottom: calc(33.33%/4 - 60px);
     line-height: 100%;
     text-align: center;
-    background-color: #1f69ff;
+    background-color: #fbc3c3;
     color: white;
     margin: 10px;
     font-size: 28px;
@@ -65,7 +65,7 @@
 .community-grid2 div:nth-child(13),
 .community-grid2 div:nth-child(15),
 .community-grid2 div:nth-child(17) {
-  background-color: #1f69ff;
+  background-color: #fbc3c3;
 }
 
 /* Use a more specific selector to apply hover color to specific squares */

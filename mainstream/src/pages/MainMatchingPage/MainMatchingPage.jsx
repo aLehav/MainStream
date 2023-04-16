@@ -132,13 +132,14 @@ const fetchData = async () => {
   }
 
   return (
-    <div className="centerContent">
+    <div className="centerContent" id="parent_div">
     <div
-      className="container"
+      id="background"
       style={{
         backgroundImage: recommendedTracks[0]?.album?.images[0]?.url && `url(${recommendedTracks[0].album.images[0].url})`
       }}
-    >
+    />
+    <div className="container">
     <div className="pfpImage">
       <Link to="/profile">
         <img src={user.images[0].url} alt="Profile" style={{

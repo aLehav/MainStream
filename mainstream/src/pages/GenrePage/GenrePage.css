@@ -1,7 +1,7 @@
 .genre-page {
   font-family: 'Inter', sans-serif;
   color: black;
-  background-color: #FFF5E4;
+  background-color: white;
   /* background-image: url("./images/GenrePageBGImageBlur.png");  */
   text-align: center;
   padding: 50px;
@@ -33,14 +33,14 @@ h2 {
   padding-bottom: calc(33.33%/4 - 60px);
   line-height: 100px;
   text-align: center;
-  background-color: #FFE3E1;
+  background-color: #fde4e2;
   color: black;
   margin: 10px;
   font-size: 24px;
 }
 
 .genre-square.selected {
-  background-color: #FF2E63;
+  background-color: #4e4e4e;
   color: white;
 }
 
@@ -54,7 +54,7 @@ h2 {
 .genre-grid div:nth-child(13),
 .genre-grid div:nth-child(15),
 .genre-grid div:nth-child(17) {
-  background-color: #FFD1D1;
+  background-color: #fbc3c3;
 }
 
 /* Use a more specific selector to apply hover color to specific squares */
@@ -68,12 +68,12 @@ h2 {
 .genre-grid div:nth-child(15):hover,
 .genre-grid div:nth-child(17):hover,
 .genre-square:hover {
-  background-color: #9b9fa7;
+  background-color: #9d9594;
 }
 
 button {
   font-family: 'Inter', sans-serif;
-  background-color: #F7F7ED;
+  background-color: #c5c5a8;
   color: black;
   border: none;
   padding: 20px 40px; /* Increase the padding */
@@ -90,6 +90,6 @@ button {
 
 /* Define a new style for clicked genre squares */
 .genre-square.clicked {
-    background-color: red !important;
+    background-color: #4e4e4e !important;
     color: #fff;
   }
