@@ -38,6 +38,11 @@ h2 {
   font-size: 24px;
 }
 
+.genre-square.selected {
+  background-color: #1db954;
+  color: white;
+}
+
 /* Apply alternate background colors to every other row */
 .genre-grid div:nth-child(1),
 .genre-grid div:nth-child(3),
@@ -51,7 +56,19 @@ h2 {
   background-color: #A29EAD;
 }
 
-
+/* Use a more specific selector to apply hover color to specific squares */
+.genre-grid div:nth-child(1):hover,
+.genre-grid div:nth-child(3):hover,
+.genre-grid div:nth-child(5):hover,
+.genre-grid div:nth-child(8):hover,
+.genre-grid div:nth-child(10):hover,
+.genre-grid div:nth-child(12):hover,
+.genre-grid div:nth-child(13):hover,
+.genre-grid div:nth-child(15):hover,
+.genre-grid div:nth-child(17):hover,
+.genre-square:hover {
+  background-color: rgb(47, 120, 255);
+}
 
 button {
   font-family: 'Inter', sans-serif;
@@ -69,3 +86,9 @@ button {
 button:hover {
   background-color: #A29EAD;
 }
+
+/* Define a new style for clicked genre squares */
+.genre-square.clicked {
+    background-color: red !important;
+    color: #fff;
+  }
