@@ -115,7 +115,7 @@ const fetchData = async () => {
       const songUri = recommendedTracks[0].uri;
       console.log(songUri)
       try {
-        const response = await fetch(`https://api.spotify.com/v1/playlists/${playlist[1]}/tracks`, {
+        const response = await fetch(`https://api.spotify.com/v1/playlists/${playlist}/tracks`, {
           method: 'POST',
           headers: {
             Authorization: `Bearer ${token}`          
@@ -162,9 +162,7 @@ const fetchData = async () => {
         <p>Add this song to one of your own playlists</p>
         {playlists.map((playlist, i) => (
           <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
-            {playlists.map((playlist, i) => (
               <button key={i} onClick={() => {handleAddSong(playlist[1])}}>Add Song to {playlist[0]}</button>
-            ))}
           </div>
         ))}
     </Modal>
