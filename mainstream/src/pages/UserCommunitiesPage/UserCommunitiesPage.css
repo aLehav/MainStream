@@ -47,13 +47,13 @@
     align-items: center;
   }
 
-  .xCircle {
+  /* .xCircle {
     width: 30px;
     height: 30px;
     border-radius: 100%;
     background-color: #4caf50;
     text-align: center;
-  }
+  } */
 
 
   .community-circle2.selected {

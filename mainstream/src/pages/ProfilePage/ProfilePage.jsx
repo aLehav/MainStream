@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import './ProfilePage.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
-function ProfilePage({ user, spotifyApi }) {
+function ProfilePage({ user, spotifyApi, communities, clickedCommunities }) {
   const [tracks, setTracks] = useState([]);
   const navigate = useNavigate();
 
@@ -13,17 +13,22 @@ function ProfilePage({ user, spotifyApi }) {
     });
   }, []);
 
+  const handleNextClick = () => {
+    // Navigate to the main page
+    navigate('/main');
+  };
+
   return (
 <div className="app">
-  <div className="black-section" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-  <div id="divImg" style={{ marginLeft: '50px' }}>
+  <div className="black-section" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>  <div id="divImg" style={{ marginLeft: '50px' }}>
     <div id="divImg2">
-        <img src={user.images[0].url} alt="Profile" style={{ width: 250, height: 250, borderRadius: '50%'}}/>
+        <img src={user.images[0].url} alt="Profile" style={{ width: 250, height: 250, borderRadius: '50%', marginBottom: '-150px'}}/>
     </div>
     </div>
     <div id="div1" style={{ marginLeft: '50px'}}>
-        <h1 style={{ fontSize: '100px' }} >{user.display_name} is going mainstream.</h1>
+        <h1 style={{ fontSize: '100px' }} >{user.display_name} is going mainStream.</h1>
     </div>
+    <button onClick={handleNextClick} style={{marginTop: '50px', marginLeft: '20px', backgroundColor: "#1ed760", color: "white"}} >Find new tracks</button>
   </div>
   <div className="white-section">
     <div className="blue-square">
@@ -36,16 +41,21 @@ function ProfilePage({ user, spotifyApi }) {
                     </div>
                 ))}
             </div>
+            {/* <button onClick={handleNextClick}>Find new tracks</button> */}
         </div>
     </div>
-    <div className="blue-square">
-        <h1 className="square-title" style={{ textAlign: 'center' }}>Communities</h1>
-        <div className="square-content">
-
+        <div className="blue-square">
+            <h1 className="square-title" style={{ textAlign: 'center' }}>Social groups</h1>
+            <div className="square-content">
+            <Link to="/usercommunities">
+                <div className="commCircle">
+                        <p>See my communities</p>
+                        </div>
+                    </Link>
+            </div>
         </div>
-    </div>
     <div className="blue-square">
-        <h1 className="square-title" style={{ textAlign: 'center' }}>Services</h1>
+        <h1 className="square-title" style={{ textAlign: 'center' }}>Synced Services</h1>
         <div className="square-content">
             <div className="image-grid">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Apple-logo.png" alt="Image 1" />

@@ -45,7 +45,7 @@ function SignInPage( {setAccessToken, setUser, setLoggedIn, spotifyApi, setPlayl
   <div className="signin-container">
       <div className="background"/>
       <div className="signin-box">
-      <h1>Sign in to Spotify</h1>
+      <h1>Sign in to Spotify <br/> to use mainStream</h1>
         <button className="signin-button" onClick={handleLogin}>
           Sign in
         </button>
