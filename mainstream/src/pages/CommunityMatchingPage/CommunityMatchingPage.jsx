@@ -7,9 +7,9 @@ function CommunityMatchingPage() {
 
   // An array of the communities to be displayed in the grid
   const communities = [
-    'Gym', 'Office', 'USC', 'Study', 'Party', 'Pregame',
-    'Cooking', 'Hiking', 'LA', '420', 'Basketball', 'Snow Sports',
-    'Beach Lovers', 'Racing', 'Real Ravers', 'Y2K', 'Alcoholics', 'Goth'
+    ['Gym', "4RfmVp5Cbqb3oTckjf17o6"], ['Office', "0GTW51Vyz1U7gwbIy0mezR"], ['USC', "5cenpF6YjGxhEWZem0NUCE"], ['Study', "4KwNadVCs3npNPt9aa5KRQ"], ['Party', "0Q4UkzQROHUhO1SXHiLjlZ"], ['Pregame', "21dZhooV02njlh9p0V2gXm"],
+    ['Cooking', "65nXi2iPImAgDcqyockUoW"], ['Hiking', "1syo8sUvBHjzCkefwKXH47"], ['LA', "779t1AfVXUPcPieXJ5vkoq"], ['420', "3r4gdxyLWZUz7zasdQFSi4"], ['Basketball', "4tSBI12TPQgs61huq7yHoJ"], ['Snow Sports', "7KIEXjW1kKR1t1fuESFVux"],
+    ['Beach Lovers', "3MKAOgmwe431oQulfI7GsZ"], ['Racing', "5x0d6DZNJjoodsfDvJA96Q"], ['Real Ravers', "4wLcHfw7FszWZCgrfsVAbt"], ['Y2K', "55K7VfHWtCJ4c4Nyd99DK8"], ['Alcoholics', "3UXGLQRTjV0w3poxN0QSV9"], ['Goth', "20KdCAN0lcqyfuXFCPJJ4K"]
   ];
 
    // State to keep track of the clicked communities
@@ -42,11 +42,11 @@ function CommunityMatchingPage() {
         ))} */}
         {communities.map((community, index) => (
          <div 
-           className={`community-circle ${clickedCommunities.includes(community) ? 'clicked' : ''}`} 
+           className={`community-circle ${clickedCommunities.includes(community[0]) ? 'clicked' : ''}`} 
            key={index} 
-           onClick={() => handleCommunityClick(community)}
+           onClick={() => handleCommunityClick(community[0])}
          >
-           {community}
+           {community[0]}
          </div>
        ))}
       </div>
