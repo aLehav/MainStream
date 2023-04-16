@@ -45,8 +45,8 @@ function SignInPage( {setAccessToken, setUser, setLoggedIn, spotifyApi, setPlayl
   <div className="signin-container">
       <div className="background"/>
       <div className="signin-box" style={{ backgroundColor: "#E4F9F5"}}>
-      <h1>Sign in to Spotify <br/> to use mainStream</h1>
-        <button className="signin-button" onClick={handleLogin} style={{ backgroundColor: "#11999E"}}>
+      <h1>Go mainStream</h1>
+        <button className="signin-button" onClick={handleLogin} style={{ backgroundColor: "black", fontWeight: "bold"}}>
           Sign in
         </button>
       </div>
