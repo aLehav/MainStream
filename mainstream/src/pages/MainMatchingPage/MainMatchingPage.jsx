@@ -12,9 +12,9 @@ function MainMatchingPage({ user, token, communities, clickedCommunities }) {
     return community ? community : null;
   }).filter(Boolean);
 
-  const fetchPlaylistTracks = async () => {
+  const fetchPlaylistTracks = async (playlist) => {
     const response = await fetch(
-      "https://api.spotify.com/v1/playlists/"+playlists[0]+"/tracks",
+      "https://api.spotify.com/v1/playlists/"+playlist[1]+"/tracks",
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -24,8 +24,17 @@ function MainMatchingPage({ user, token, communities, clickedCommunities }) {
   
     const data = await response.json();
     const tracks = data.items.map((item) => item.track.id);
-    const randomTracks = shuffle(tracks).slice(0, 5);
-    return randomTracks;
+    // const randomTracks = shuffle(tracks).slice(0, 5);
+    return tracks;
+  };
+
+  const fetchTracksForAllPlaylists = async (playlists) => {
+    const tracks = await playlists.reduce(async (prevPromise, playlist) => {
+      const prevTracks = await prevPromise;
+      const playlistTracks = await fetchPlaylistTracks(playlist);
+      return prevTracks.concat(playlistTracks);
+    }, Promise.resolve([]));
+    return tracks;
   };
 
   const shuffle = (array) => {
@@ -49,10 +58,11 @@ function MainMatchingPage({ user, token, communities, clickedCommunities }) {
   };
 
 const fetchData = async () => {
-  const topTracksIds = await fetchPlaylistTracks();
+  const topTracksIds = await fetchTracksForAllPlaylists(playlists)
+  console.log(shuffle(topTracksIds).slice(0,5))
 
   const response = await fetch(
-    `https://api.spotify.com/v1/recommendations?limit=1&seed_tracks=${topTracksIds.join(
+    `https://api.spotify.com/v1/recommendations?limit=1&seed_tracks=${shuffle(topTracksIds).slice(0,5).join(
       ","
     )}`,
     {
@@ -105,7 +115,7 @@ const fetchData = async () => {
       const songUri = recommendedTracks[0].uri;
       console.log(songUri)
       try {
-        const response = await fetch(`https://api.spotify.com/v1/playlists/${playlist}/tracks`, {
+        const response = await fetch(`https://api.spotify.com/v1/playlists/${playlist[1]}/tracks`, {
           method: 'POST',
           headers: {
             Authorization: `Bearer ${token}`          
@@ -151,9 +161,10 @@ const fetchData = async () => {
         <h2>Add Song</h2>
         <p>Add this song to one of your own playlists</p>
         {playlists.map((playlist, i) => (
-          <div key={i}>
-            Playlist:
-            <button onClick={() => {handleAddSong(playlist[1])}}>Add Song to {playlist[0]}</button>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
+            {playlists.map((playlist, i) => (
+              <button key={i} onClick={() => {handleAddSong(playlist[1])}}>Add Song to {playlist[0]}</button>
+            ))}
           </div>
         ))}
     </Modal>
