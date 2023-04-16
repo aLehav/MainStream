@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import SignInPage from './pages/SignInPage/SignInPage';
 import GenrePage from './pages/GenrePage/GenrePage';
+import CommunityMatchingPage from './pages/CommunityMatchingPage/CommunityMatchingPage'
 
 
 const spotifyApi = new SpotifyWebApi();
@@ -21,10 +22,10 @@ function App() {
         <Route path='/genre'
           element={<GenrePage user={user} token={access_token}/>}
         />
-        {/* <Route path='/community'>
-          <CommunityMatchingPage />
-        </Route>
-        <Route path='/main'>
+        <Route path='/community'
+          element={<CommunityMatchingPage />}
+        />
+        {/* <Route path='/main'>
           <MainMatchingPage />
         </Route> */}
         {/* <Redirect to='/signin' /> */}

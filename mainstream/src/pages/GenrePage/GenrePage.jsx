@@ -14,7 +14,7 @@ function GenrePage() {
 
   const handleNextClick = () => {
     // Navigate to the next page
-    navigate('/');
+    navigate('/community');
   };
 
   return (
