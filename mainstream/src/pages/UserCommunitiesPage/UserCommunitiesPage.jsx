@@ -36,7 +36,7 @@ function UserCommunitiesPage({ communities, clickedCommunities, setPlaylist}){
             </div>
        ))}
         </div>
-        <button onClick={handleNextClick}>Main</button>
+        <button style={{ color: "white", background: "black"}} onClick={handleNextClick}>Main</button>  
       </div>
     );
   }

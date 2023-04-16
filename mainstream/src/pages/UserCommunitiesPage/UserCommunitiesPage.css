@@ -1,12 +1,14 @@
 .user-communities-page2 {
     font-family: 'Inter', sans-serif;
     color: black;
-    background-color: #d6fff2;
+    background-color: white;
     text-align: center;
     padding: 50px;
     padding-top: 5px;
     height: 100vh; /* Set the height to cover the entire screen */
     box-sizing: border-box; /* Include padding in the height */
+    align-content: center;
+    align-items: center;
   }
   
   h1 {
