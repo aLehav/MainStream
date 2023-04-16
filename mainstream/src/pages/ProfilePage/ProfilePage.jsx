@@ -49,7 +49,7 @@ function ProfilePage({ user, spotifyApi, communities, clickedCommunities }) {
             <div className="square-content">
             <Link to="/usercommunities">
                 <div className="commCircle">
-                        <p>See my communities</p>
+                        <p>My <br></br> community playlists</p>
                         </div>
                     </Link>
             </div>
