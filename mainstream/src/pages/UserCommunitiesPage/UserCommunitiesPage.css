@@ -10,7 +10,7 @@
   }
   
   h1 {
-    font-size: 48px;
+    font-size: 54px;
     margin-bottom: 20px;
   }
   
@@ -21,7 +21,7 @@
   .community-grid2 {
     display: flex;
     flex-wrap: wrap;
-    margin: 10% auto;
+    margin: 5% auto;
     max-width: 60lh;
     align-items: center;
     justify-content: center;
@@ -29,8 +29,8 @@
   
   .community-circle2 {
     font-family: 'Inter', sans-serif;
-    width: 20%;
-    height: 30%;
+    width: 250px;
+    height: 150px;
     padding-top: calc(33.33%/4 - 60px);
     padding-bottom: calc(33.33%/4 - 60px);
     line-height: 100%;

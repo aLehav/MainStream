@@ -7,6 +7,7 @@ import GenrePage from './pages/GenrePage/GenrePage';
 import CommunityMatchingPage from './pages/CommunityMatchingPage/CommunityMatchingPage'
 import MainMatchingPage from './pages/MainMatchingPage/MainMatchingPage'
 import UserCommunitiesPage from './pages/UserCommunitiesPage/UserCommunitiesPage';
+import CommunitySongsPage from './pages/CommunitySongsPage/CommunitySongsPage';
 
 /* Create a useState variable storing the person's chosen communities and pass the setState and actual
    variable to CommunityPage, update the variable when someone clicks on one of the communities, and change the color of
@@ -47,6 +48,9 @@ function App() {
         />
         <Route path='/profile'
           element={<ProfilePage user={user} token={access_token} spotifyApi={spotifyApi}/>}
+        />
+        <Route path='/communitysongs'
+          element={<CommunitySongsPage communities={communities} clickedCommunities={clickedCommunities}/>}
         />
         {/* <Redirect to='/signin' /> */}
       </Routes>
