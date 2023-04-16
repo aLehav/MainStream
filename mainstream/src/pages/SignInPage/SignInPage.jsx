@@ -35,7 +35,7 @@ function SignInPage( {setAccessToken, setUser, setLoggedIn, spotifyApi, setPlayl
       spotifyApi.getMe().then((data) => {
         setUser(data);
         setLoggedIn(true);
-        setPlaylist("Y2K");
+        setPlaylist("Alcoholics");
         navigate('/communitysongs');
       });
     }

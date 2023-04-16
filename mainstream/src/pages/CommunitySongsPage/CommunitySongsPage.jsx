@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { getFirestore, collection, onSnapshot } from "firebase/firestore";
+import { getFirestore, collection, onSnapshot, doc, updateDoc, getDoc } from "firebase/firestore";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import './CommunitySongs.css'
 
 // Import the functions you need from the SDKs you need
@@ -22,9 +24,8 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-const CommunitySongsPage = ({ playlist, token }) => {
+const CommunitySongsPage = ({ playlist }) => {
   const [songs, setSongs] = useState([]);
-  const [tracks, setTracks] = useState([]);
   console.log(playlist)
   useEffect(() => {
     const db = getFirestore();
@@ -35,46 +36,42 @@ const CommunitySongsPage = ({ playlist, token }) => {
       querySnapshot.forEach((doc) => {
         songsList.push({ id: doc.id, ...doc.data() });
       });
+      songsList.sort((a,b) => b.votes - a.votes)
       setSongs(songsList);
     });
-
-    if (songs.length > 0) {
-      const trackIds = songs.map(song => song.id);
-      const limit = 5; // you can set the number of recommended tracks to fetch
-      
-      fetch(`https://api.spotify.com/v1/recommendations?seed_tracks=${trackIds.join()}&limit=${limit}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setTracks(data.tracks);
-        })
-        .catch((error) => {
-          console.error("Error fetching recommended tracks", error);
-        });
-    }
   }, [playlist]);
+
+  const handleVote = async (songId, increment) => {
+    const db = getFirestore();
+    const songRef = doc(db, playlist, songId);
+    const songDoc = await getDoc(songRef);
+    const votes = songDoc.data().votes;
+    await updateDoc(songRef, { votes: increment ? votes + 1 : votes - 1 });
+  }
 
   return (
     <div>
       <h1>{playlist}</h1>
-      <ul>
+      <ul style={{ listStyle: 'none', margin: '1rem 0' }}>
         {songs.map((song) => (
-          <li key={song.id}>
-            {song.id} with votes of {song.votes}
+          <li key={song.id} style={{ margin: '1rem 0' }}>
+            <div style={{ display: 'flex', alignItems: 'center', margin: '0.5rem 0' }}>
+              <iframe
+                src={`https://open.spotify.com/embed/track/${song.id}`}
+                width="500"
+                height="120"
+                frameBorder="0"
+                allowtransparency="true"
+                allow="encrypted-media"
+                style={{ marginRight: '1rem' }}
+              ></iframe>
+              <span style={{ fontSize: '1.5rem', fontWeight: 'bold', marginRight: '1rem', display: 'inline-flex', flexDirection: 'column', justifyContent: 'center' }}>{song.votes}
+                <FontAwesomeIcon icon={faChevronUp} style={{ marginLeft: '0.5rem', cursor: 'pointer' }} onClick={() => handleVote(song.id, true)} />
+                <FontAwesomeIcon icon={faChevronDown} style={{ marginLeft: '0.5rem', cursor: 'pointer' }} onClick={() => handleVote(song.id, false)} />
+              </span>
+            </div>
           </li>
         ))}
-        {/* {recommendedTracks.map(({name, artists, album}) => (
-          <div className="song-container" key={name}>
-            <img src={album.images[0].url} alt="cover" className="song-cover" />
-            <div className="song-details">
-              <p className="song-name">{name}</p>
-              <p className="song-artist">{artists.map(artist => artist.name).join(', ')}</p>
-            </div>
-          </div>
-        ))} */}
       </ul>
     </div>
   );
