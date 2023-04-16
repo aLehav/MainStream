@@ -28,7 +28,7 @@ function ProfilePage({ user, spotifyApi, communities, clickedCommunities }) {
     <div id="div1" style={{ marginLeft: '50px'}}>
         <h1 style={{ fontSize: '50px' }} >{user.display_name} is going mainStream.</h1>
     </div>
-    <button onClick={handleNextClick} style={{marginTop: '25px', marginLeft: '20px', backgroundColor: "#1ed760", color: "white"}} >Find new tracks</button>
+    <button onClick={handleNextClick} style={{marginTop: '25px', marginLeft: '20px', backgroundColor: "black", color: "white"}} >Find new tracks</button>
   </div>
   <div className="white-section">
     <div className="blue-square">

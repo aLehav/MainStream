@@ -113,27 +113,22 @@ const fetchData = async () => {
   }
 
   const handleAddSong = async (playlist) => {
-      const songUri = recommendedTracks[0].uri;
-      console.log(songUri)
-      try {
-        const response = await fetch(`https://api.spotify.com/v1/playlists/${playlist}/tracks`, {
-          method: 'POST',
-          headers: {
-            Authorization: `Bearer ${token}`          
-          },
-          body: JSON.stringify({
-            uris: [songUri]
-          })
-        });
-        
-        if (response.ok) {
-          console.log('Song added to playlist successfully!', response);
-        } else {
-          console.error('Error adding song to playlist:', response.status);
+    const songID = recommendedTracks[0].id;
+    setShowModal(false);
+  
+    try {
+      await fetch(`https://api.spotify.com/v1/me/tracks?ids=${songID}`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': 'Bearer ' + token
         }
-      } catch (error) {
-        console.error('Error adding song to playlist:', error);
-      }
+      });
+      console.log('Track saved!');
+    } catch (error) {
+      console.error('Error saving track:', error);
+    }
+  
+    await fetchData();
   }
 
   return (
@@ -181,7 +176,7 @@ const fetchData = async () => {
             maxWidth: "none",
             marginLeft: "auto",
             marginRight: "auto",
-            backgroundColor: "#E4F9F5"
+            backgroundColor: "white"
           },
         }}
       >
@@ -189,7 +184,7 @@ const fetchData = async () => {
         <p>Which community playlist is the best fit for this song?</p>
         {playlists.map((playlist, i) => (
           <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
-              <button key={i} onClick={() => {handleAddSong(playlist[1])}} style={{ backgroundColor: "#30E3CA"}}>Add to {playlist[0]}</button>
+              <button key={i} onClick={() => {handleAddSong(playlist[1])}} style={{ backgroundColor: "black", color: "white"}}>Add to {playlist[0]}</button>
           </div>
         ))}
     </Modal>
@@ -203,10 +198,10 @@ const fetchData = async () => {
       </div>
     ))} */}
     <div className="buttons-container">
-      <button className="next-button" onClick={handleNext} style={{ backgroundColor: "#30E3CA"}}>
+      <button className="next-button" onClick={handleNext} style={{ backgroundColor: "white"}}>
       <FontAwesomeIcon icon={faArrowRight} />
       </button>
-      <button className="reject-button" onClick={handleReject} style={{ backgroundColor: "#30E3CA"}}>
+      <button className="reject-button" onClick={handleReject} style={{ backgroundColor: "white"}}>
       <FontAwesomeIcon icon={faArrowLeft} />
       </button>
     </div>
