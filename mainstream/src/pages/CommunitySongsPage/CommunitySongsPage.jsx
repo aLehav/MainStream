@@ -51,8 +51,11 @@ const CommunitySongsPage = ({ playlist }) => {
   }
 
   return (
-<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-  <h1 style={{ display: 'flex', alignItems: 'center' }}>
+    
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100vh'} } className="background">
+  <div   style={{backgroundColor: 'white', height: '100vh', paddingLeft: '100px',paddingRight: '100px' }}    >
+  
+  <h1 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', paddingBottom: '15px' }}>
     <FontAwesomeIcon icon={faMusic} style={{ marginRight: '1rem' }} />
     {playlist}
     <FontAwesomeIcon icon={faMusic} style={{ marginLeft: '1rem' }} />
@@ -105,8 +108,8 @@ const CommunitySongsPage = ({ playlist }) => {
       </li>
     ))}
   </ul>
+  </div>
 </div>
-
   );
 };
 

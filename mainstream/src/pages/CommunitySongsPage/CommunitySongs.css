@@ -39,3 +39,8 @@
   .song-artist {
     font-size: 1rem;
   }  
+
+.background{
+  background-image: url("./images/SignInPageBGImageBlur.png"); 
+
+}
