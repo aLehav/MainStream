@@ -1,0 +1,112 @@
+.user-communities-page2 {
+    font-family: 'Inter', sans-serif;
+    color: black;
+    background-color: #d6fff2;
+    text-align: center;
+    padding: 50px;
+    padding-top: 5px;
+    height: 100vh; /* Set the height to cover the entire screen */
+    box-sizing: border-box; /* Include padding in the height */
+  }
+  
+  h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    font-size: 32px;
+  }
+  
+  .community-grid2 {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10% auto;
+    max-width: 60lh;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .community-circle2 {
+    font-family: 'Inter', sans-serif;
+    width: 20%;
+    height: 30%;
+    padding-top: calc(33.33%/4 - 60px);
+    padding-bottom: calc(33.33%/4 - 60px);
+    line-height: 100%;
+    text-align: center;
+    background-color: #1f69ff;
+    color: white;
+    margin: 10px;
+    font-size: 24px;
+    border-radius: 50%;
+    font-weight: bold;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .xCircle {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    background-color: #4caf50;
+    text-align: center;
+  }
+
+
+  .community-circle2.selected {
+    background-color: #FF2E63;
+    color: white;
+  }
+
+  /* Apply alternate background colors to every other row */
+.community-grid2 div:nth-child(1),
+.community-grid2 div:nth-child(3),
+.community-grid2 div:nth-child(5),
+.community-grid2 div:nth-child(8),
+.community-grid2 div:nth-child(10),
+.community-grid2 div:nth-child(12),
+.community-grid2 div:nth-child(13),
+.community-grid2 div:nth-child(15),
+.community-grid2 div:nth-child(17) {
+  background-color: #1f69ff;
+}
+
+/* Use a more specific selector to apply hover color to specific squares */
+.community-grid2 div:nth-child(1):hover,
+.community-grid2 div:nth-child(3):hover,
+.community-grid2 div:nth-child(5):hover,
+.community-grid2 div:nth-child(8):hover,
+.community-grid2 div:nth-child(10):hover,
+.community-grid2 div:nth-child(12):hover,
+.community-grid2 div:nth-child(13):hover,
+.community-grid2 div:nth-child(15):hover,
+.community-grid2 div:nth-child(17):hover,
+.community-circle2:hover {
+  background-color: #9b9fa7;
+}
+
+  .community-circle2.clicked {
+    background-color: red !important;
+    color: #fff;
+  }
+  
+  button {
+    font-family: 'Inter', sans-serif;
+    background-color: #F7F7ED;
+    color: black;
+    border: none;
+    padding: 20px 40px; /* Increase the padding */
+    cursor: pointer;
+    margin-top: 20px;
+    float: right;
+    border-radius: 20px;
+    font-size: 1.5em; /* Enlarge the font size */
+  }
+  
+  button:hover {
+    background-color: #A29EAD;
+  }
+  
