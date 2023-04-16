@@ -45,7 +45,7 @@ function App() {
           element={<MainMatchingPage user={user} token={access_token} communities={communities} clickedCommunities={clickedCommunities}/>}
         />
         <Route path='/usercommunities'
-          element={<UserCommunitiesPage communities={communities} clickedCommunities={clickedCommunities}/>}
+          element={<UserCommunitiesPage communities={communities} clickedCommunities={clickedCommunities} setPlaylist={setPlaylist}/>}
         />
         <Route path='/profile'
           element={<ProfilePage user={user} token={access_token} spotifyApi={spotifyApi} communities={communities} clickedCommunities={clickedCommunities}/>}

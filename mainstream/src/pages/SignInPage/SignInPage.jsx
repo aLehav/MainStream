@@ -35,8 +35,8 @@ function SignInPage( {setAccessToken, setUser, setLoggedIn, spotifyApi, setPlayl
       spotifyApi.getMe().then((data) => {
         setUser(data);
         setLoggedIn(true);
-        setPlaylist("Alcoholics");
-        navigate('/communitysongs');
+        // setPlaylist("Alcoholics");
+        navigate('/genre');
       });
     }
   }, []);
