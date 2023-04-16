@@ -38,23 +38,15 @@
     background-color: #1f69ff;
     color: white;
     margin: 10px;
-    font-size: 24px;
+    font-size: 28px;
     border-radius: 50%;
     font-weight: bold;
     position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
-
-  .xCircle {
-    width: 30px;
-    height: 30px;
-    border-radius: 100%;
-    background-color: #4caf50;
-    text-align: center;
-  }
-
 
   .community-circle2.selected {
     background-color: #FF2E63;
