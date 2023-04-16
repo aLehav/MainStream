@@ -31,8 +31,8 @@ function GenrePage() {
 
   return (
     <div className="genre-page">
-      <h1>Your favorite genres...</h1>
-      <h2>Choose these to get songs curated towards who you are</h2>
+      <h1>Select your favorite genres</h1>
+      <h2>Choose genres to personalize recommendations to your individual taste</h2>
       <div className="genre-grid">
        {genres.map((genre, index) => (
          <div 

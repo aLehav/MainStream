@@ -1,8 +1,8 @@
 .community-matching-page {
     font-family: 'Inter', sans-serif;
     color: black;
-    background-color: #DEDEDE;
-    text-align: left;
+    background-color: #d6fff2;
+    text-align: center;
     padding: 50px;
     padding-top: 5px;
     height: 100vh; /* Set the height to cover the entire screen */
@@ -32,16 +32,48 @@
     padding-bottom: calc(33.33%/4 - 60px);
     line-height: 100px;
     text-align: center;
-    background-color: #A29EAD;
-    color: black;
+    background-color: #252A34;
+    color: white;
     margin: 10px;
     font-size: 24px;
     border-radius: 50%;
   }
-  
-  .community-circle:hover {
-    background-color: #F7F7ED;
-    color: #A29EAD;
+
+  .community-circle.selected {
+    background-color: #FF2E63;
+    color: white;
+  }
+
+  /* Apply alternate background colors to every other row */
+.community-grid div:nth-child(1),
+.community-grid div:nth-child(3),
+.community-grid div:nth-child(5),
+.community-grid div:nth-child(8),
+.community-grid div:nth-child(10),
+.community-grid div:nth-child(12),
+.community-grid div:nth-child(13),
+.community-grid div:nth-child(15),
+.community-grid div:nth-child(17) {
+  background-color: #636872;
+}
+
+/* Use a more specific selector to apply hover color to specific squares */
+.community-grid div:nth-child(1):hover,
+.community-grid div:nth-child(3):hover,
+.community-grid div:nth-child(5):hover,
+.community-grid div:nth-child(8):hover,
+.community-grid div:nth-child(10):hover,
+.community-grid div:nth-child(12):hover,
+.community-grid div:nth-child(13):hover,
+.community-grid div:nth-child(15):hover,
+.community-grid div:nth-child(17):hover,
+.community-circle:hover {
+  background-color: #9b9fa7;
+}
+
+  .community-circle.clicked {
+    background-color: red !important;
+    color: #fff;
   }
   
   button {
