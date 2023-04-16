@@ -14,7 +14,7 @@ function SignInPage( {setAccessToken, setUser, setLoggedIn, spotifyApi, setPlayl
 
     // Set the scope for the authentication request
     // const write_scope = "user-library-read";
-    const scope = "playlist-modify-public,playlist-read-private,user-library-read";
+    const scope = "playlist-modify-public,playlist-read-private,user-library-read,user-library-modify";
 
     // Create the authorization URL
     const url = `https://accounts.spotify.com/authorize?response_type=token&client_id=${client_id}&client_secret=${client_secret}&redirect_uri=${redirect_uri}&scope=${scope}`;
@@ -35,8 +35,8 @@ function SignInPage( {setAccessToken, setUser, setLoggedIn, spotifyApi, setPlayl
       spotifyApi.getMe().then((data) => {
         setUser(data);
         setLoggedIn(true);
-        setPlaylist("Alcoholics");
-        navigate('/communitysongs');
+        // setPlaylist("Alcoholics");
+        navigate('/genre');
       });
     }
   }, []);
@@ -44,9 +44,9 @@ function SignInPage( {setAccessToken, setUser, setLoggedIn, spotifyApi, setPlayl
   return (
   <div className="signin-container">
       <div className="background"/>
-      <div className="signin-box">
-      <h1>Sign in to Spotify <br/> to use mainStream</h1>
-        <button className="signin-button" onClick={handleLogin}>
+      <div className="signin-box" style={{ backgroundColor: "#E4F9F5"}}>
+      <h1>Go mainStream</h1>
+        <button className="signin-button" onClick={handleLogin} style={{ backgroundColor: "black", fontWeight: "bold"}}>
           Sign in
         </button>
       </div>

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./MainMatchingPage.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faArrowRight, faHeart, faX } from '@fortawesome/free-solid-svg-icons';
 import Modal from 'react-modal';
+import { Link } from 'react-router-dom';
 
 function MainMatchingPage({ user, token, communities, clickedCommunities }) {
   const [recommendedTracks, setRecommendedTracks] = useState([]);
@@ -112,36 +113,46 @@ const fetchData = async () => {
   }
 
   const handleAddSong = async (playlist) => {
-      const songUri = recommendedTracks[0].uri;
-      console.log(songUri)
-      try {
-        const response = await fetch(`https://api.spotify.com/v1/playlists/${playlist}/tracks`, {
-          method: 'POST',
-          headers: {
-            Authorization: `Bearer ${token}`          
-          },
-          body: JSON.stringify({
-            uris: [songUri]
-          })
-        });
-        
-        if (response.ok) {
-          console.log('Song added to playlist successfully!', response);
-        } else {
-          console.error('Error adding song to playlist:', response.status);
+    const songID = recommendedTracks[0].id;
+    setShowModal(false);
+  
+    try {
+      await fetch(`https://api.spotify.com/v1/me/tracks?ids=${songID}`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': 'Bearer ' + token
         }
-      } catch (error) {
-        console.error('Error adding song to playlist:', error);
-      }
+      });
+      console.log('Track saved!');
+    } catch (error) {
+      console.error('Error saving track:', error);
+    }
+  
+    await fetchData();
   }
 
   return (
+    <div className="centerContent">
     <div
       className="container"
       style={{
         backgroundImage: recommendedTracks[0]?.album?.images[0]?.url && `url(${recommendedTracks[0].album.images[0].url})`
       }}
     >
+    <div className="pfpImage">
+      <Link to="/profile">
+        <img src={user.images[0].url} alt="Profile" style={{
+        position: "absolute", /* Add this rule */
+        top: 0, /* Add this rule */
+        right: 0, /* Add this rule */
+        width: 150,
+        height: 150,
+        borderRadius: "50%",
+        marginTop: '40px',
+        marginRight: '40px'
+      }}/>
+    </Link>
+  </div>
     {recommendedTracks[0] && (<iframe
       title="Spotify Embed: Recommendation Playlist "
       src={`https://open.spotify.com/embed/track/${recommendedTracks[0].id}?utm_source=generator&theme=0&autoplay=1`}
@@ -165,14 +176,15 @@ const fetchData = async () => {
             maxWidth: "none",
             marginLeft: "auto",
             marginRight: "auto",
+            backgroundColor: "white"
           },
         }}
       >
-        <h2>Add Song</h2>
-        <p>Add this song to one of your own playlists</p>
+        <h2 style={{ fontSize: "35px"}} >Add to community playlist</h2>
+        <p>Which community playlist is the best fit for this song?</p>
         {playlists.map((playlist, i) => (
           <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
-              <button key={i} onClick={() => {handleAddSong(playlist[1])}}>Add Song to {playlist[0]}</button>
+              <button key={i} onClick={() => {handleAddSong(playlist[1])}} style={{ backgroundColor: "black", color: "white"}}>Add to {playlist[0]}</button>
           </div>
         ))}
     </Modal>
@@ -186,12 +198,13 @@ const fetchData = async () => {
       </div>
     ))} */}
     <div className="buttons-container">
-      <button className="next-button" onClick={handleNext}>
-      <FontAwesomeIcon icon={faArrowRight} />
+      <button className="next-button" onClick={handleNext} style={{ backgroundColor: "white"}}>
+      <FontAwesomeIcon icon={faHeart} />
       </button>
-      <button className="reject-button" onClick={handleReject}>
-      <FontAwesomeIcon icon={faArrowLeft} />
+      <button className="reject-button" onClick={handleReject} style={{ backgroundColor: "white"}}>
+      <FontAwesomeIcon icon={faX} />
       </button>
+    </div>
     </div>
   </div>
   );

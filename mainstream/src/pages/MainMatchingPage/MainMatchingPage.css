@@ -24,6 +24,12 @@
   .song-container:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   }
+
+  .pfpImage {
+    color: black;
+    background-color: black;
+    border: 10px;
+  }
   
   .song-cover {
     height: 100px;
