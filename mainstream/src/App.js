@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React, { useEffect, useState } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
+import ProfilePage from './pages/ProfilePage/ProfilePage';
 import SignInPage from './pages/SignInPage/SignInPage';
 import GenrePage from './pages/GenrePage/GenrePage';
 import CommunityMatchingPage from './pages/CommunityMatchingPage/CommunityMatchingPage'
@@ -30,7 +31,7 @@ function App() {
     <Router>
       <Routes>
         <Route path='/'
-          element={<SignInPage setAccessToken={setAccessToken} setUser={setUser} setLoggedIn={setLoggedIn}/>}
+          element={<SignInPage setAccessToken={setAccessToken} setUser={setUser} setLoggedIn={setLoggedIn} spotifyApi={spotifyApi}/>}
         />
         <Route path='/genre'
           element={<GenrePage user={user} token={access_token}/>}
@@ -39,10 +40,13 @@ function App() {
           element={<CommunityMatchingPage communities={communities} clickedCommunities={clickedCommunities} setClickedCommunities={setClickedCommunities}/>}
         />
         <Route path='/main'
-          element={<MainMatchingPage user={user} token={access_token}/>}
+          element={<MainMatchingPage user={user} token={access_token} communities={communities} clickedCommunities={clickedCommunities}/>}
         />
         <Route path='/usercommunities'
           element={<UserCommunitiesPage communities={communities} clickedCommunities={clickedCommunities}/>}
+        />
+        <Route path='/profile'
+          element={<ProfilePage user={user} token={access_token} spotifyApi={spotifyApi}/>}
         />
         {/* <Redirect to='/signin' /> */}
       </Routes>
