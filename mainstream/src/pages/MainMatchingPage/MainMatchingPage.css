@@ -95,3 +95,20 @@
     background-color: #bbb;
   }
   
+  #parent_div {
+    position: relative;
+  }
+  
+  #background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0px;
+    bottom: 0;
+    background-color: red;
+    filter: blur(4px);
+    opacity: .7;
+    z-index: -1;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
