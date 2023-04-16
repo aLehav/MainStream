@@ -29,7 +29,7 @@ function App() {
     <Router>
       <Routes>
         <Route path='/'
-          element={<SignInPage setAccessToken={setAccessToken} setUser={setUser} setLoggedIn={setLoggedIn}/>}
+          element={<SignInPage setAccessToken={setAccessToken} setUser={setUser} setLoggedIn={setLoggedIn} spotifyApi={spotifyApi}/>}
         />
         <Route path='/genre'
           element={<GenrePage user={user} token={access_token}/>}
@@ -38,7 +38,7 @@ function App() {
           element={<CommunityMatchingPage communities={communities} clickedCommunities={clickedCommunities} setClickedCommunities={setClickedCommunities}/>}
         />
         <Route path='/main'
-          element={<MainMatchingPage user={user} token={access_token}/>}
+          element={<MainMatchingPage user={user} token={access_token} communities={communities} clickedCommunities={clickedCommunities}/>}
         />
         {/* <Redirect to='/signin' /> */}
       </Routes>

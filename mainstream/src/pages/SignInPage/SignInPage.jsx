@@ -3,9 +3,7 @@ import SpotifyWebApi from "spotify-web-api-js";
 import { useNavigate } from "react-router-dom";
 import "./SignInPage.css";
 
-const spotifyApi = new SpotifyWebApi();
-
-function SignInPage( {setAccessToken, setUser, setLoggedIn}) {
+function SignInPage( {setAccessToken, setUser, setLoggedIn, spotifyApi}) {
   const navigate = useNavigate()
   const handleLogin = () => {
     // Replace with your own client ID
@@ -36,7 +34,7 @@ function SignInPage( {setAccessToken, setUser, setLoggedIn}) {
       spotifyApi.getMe().then((data) => {
         setUser(data);
         setLoggedIn(true);
-        navigate('/community');
+        navigate('/genre');
       });
     }
   }, []);
