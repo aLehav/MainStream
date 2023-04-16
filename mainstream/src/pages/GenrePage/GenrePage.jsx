@@ -44,7 +44,7 @@ function GenrePage() {
          </div>
        ))}
       </div>
-      <button onClick={handleNextClick}>Next</button>
+      <button style={{ backgroundColor: "#40514E", color: "white"}} onClick={handleNextClick}>Next</button>
     </div>
   );
 }

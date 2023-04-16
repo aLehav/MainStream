@@ -3,6 +3,7 @@ import "./MainMatchingPage.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import Modal from 'react-modal';
+import { Link } from 'react-router-dom';
 
 function MainMatchingPage({ user, token, communities, clickedCommunities }) {
   const [recommendedTracks, setRecommendedTracks] = useState([]);
@@ -136,12 +137,27 @@ const fetchData = async () => {
   }
 
   return (
+    <div className="centerContent">
     <div
       className="container"
       style={{
         backgroundImage: recommendedTracks[0]?.album?.images[0]?.url && `url(${recommendedTracks[0].album.images[0].url})`
       }}
     >
+    <div className="pfpImage">
+      <Link to="/profile">
+        <img src={user.images[0].url} alt="Profile" style={{
+        position: "absolute", /* Add this rule */
+        top: 0, /* Add this rule */
+        right: 0, /* Add this rule */
+        width: 150,
+        height: 150,
+        borderRadius: "50%",
+        marginTop: '40px',
+        marginRight: '40px'
+      }}/>
+    </Link>
+  </div>
     {recommendedTracks[0] && (<iframe
       title="Spotify Embed: Recommendation Playlist "
       src={`https://open.spotify.com/embed/track/${recommendedTracks[0].id}?utm_source=generator&theme=0&autoplay=1`}
@@ -165,14 +181,15 @@ const fetchData = async () => {
             maxWidth: "none",
             marginLeft: "auto",
             marginRight: "auto",
+            backgroundColor: "#E4F9F5"
           },
         }}
       >
-        <h2>Add Song</h2>
-        <p>Add this song to one of your own playlists</p>
+        <h2 style={{ fontSize: "35px"}} >Add to community playlist</h2>
+        <p>Which community playlist is the best fit for this song?</p>
         {playlists.map((playlist, i) => (
           <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
-              <button key={i} onClick={() => {handleAddSong(playlist[1])}}>Add Song to {playlist[0]}</button>
+              <button key={i} onClick={() => {handleAddSong(playlist[1])}} style={{ backgroundColor: "#30E3CA"}}>Add to {playlist[0]}</button>
           </div>
         ))}
     </Modal>
@@ -186,12 +203,13 @@ const fetchData = async () => {
       </div>
     ))} */}
     <div className="buttons-container">
-      <button className="next-button" onClick={handleNext}>
+      <button className="next-button" onClick={handleNext} style={{ backgroundColor: "#30E3CA"}}>
       <FontAwesomeIcon icon={faArrowRight} />
       </button>
-      <button className="reject-button" onClick={handleReject}>
+      <button className="reject-button" onClick={handleReject} style={{ backgroundColor: "#30E3CA"}}>
       <FontAwesomeIcon icon={faArrowLeft} />
       </button>
+    </div>
     </div>
   </div>
   );
