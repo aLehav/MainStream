@@ -2,18 +2,13 @@ import React, { useState } from 'react';
 import './CommunityMatchingPage.css';
 import { useNavigate } from 'react-router-dom';
 
-function CommunityMatchingPage() {
+function CommunityMatchingPage({ communities, clickedCommunities, setClickedCommunities}) {
   const navigate = useNavigate();
 
   // An array of the communities to be displayed in the grid
-  const communities = [
-    'Gym', 'Office', 'USC', 'Study', 'Party', 'Pregame',
-    'Cooking', 'Hiking', 'LA', '420', 'Basketball', 'Snow Sports',
-    'Beach Lovers', 'Racing', 'Real Ravers', 'Y2K', 'Alcoholics', 'Goth'
-  ];
+  
 
    // State to keep track of the clicked communities
- const [clickedCommunities, setClickedCommunities] = useState([]);
 
  const handleCommunityClick = (community) => {
    // Add or remove the clicked communities from the state
@@ -42,11 +37,11 @@ function CommunityMatchingPage() {
         ))} */}
         {communities.map((community, index) => (
          <div 
-           className={`community-circle ${clickedCommunities.includes(community) ? 'clicked' : ''}`} 
+           className={`community-circle ${clickedCommunities.includes(community[0]) ? 'clicked' : ''}`} 
            key={index} 
-           onClick={() => handleCommunityClick(community)}
+           onClick={() => handleCommunityClick(community[0])}
          >
-           {community}
+           {community[0]}
          </div>
        ))}
       </div>

@@ -98,6 +98,40 @@ const fetchData = async () => {
     await fetchData();
   }
 
+  const handleAddSong = async (playlist) => {
+      const songUri = recommendedTracks[0].uri;
+      console.log(songUri)
+      try {
+      
+        // const response = await fetch(`https://api.spotify.com/v1/playlists/${playlist}/tracks`, {
+        //   method: 'POST',
+        //   headers: {
+        //     Authorization: `Bearer ${token}`          
+        //   },
+        //   body: JSON.stringify({
+        //     uris: [songUri]
+        //   })
+        // });
+        const response = await fetch(`https://api.spotify.com/v1/playlists/${playlist}/tracks`, {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${token}`          
+          },
+          body: JSON.stringify({
+            uris: [songUri]
+          })
+        });
+        
+        if (response.ok) {
+          console.log('Song added to playlist successfully!', response);
+        } else {
+          console.error('Error adding song to playlist:', response.status);
+        }
+      } catch (error) {
+        console.error('Error adding song to playlist:', error);
+      }
+  }
+
   return (
     <div
       className="container"
@@ -110,13 +144,23 @@ const fetchData = async () => {
         onRequestClose={() => {handleModalClose()}}
         contentLabel="Example Modal"
         ariaHideApp={false}
+        style={{
+          content: {
+            width: "25%",
+            height: "50%",
+            marginTop: "10%",
+            maxWidth: "none",
+            marginLeft: "auto",
+            marginRight: "auto",
+          },
+        }}
       >
         <h2>Modal Title</h2>
         <p>Modal Content</p>
         {playlists.map((playlist, i) => (
           <div key={i}>
             Playlist:
-            {playlist}
+            <button onClick={() => {handleAddSong(playlist)}}>Add Song to {playlist}</button>
           </div>
         ))}
     </Modal>
