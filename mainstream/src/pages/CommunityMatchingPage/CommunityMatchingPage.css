@@ -1,7 +1,7 @@
 .community-matching-page {
     font-family: 'Inter', sans-serif;
     color: black;
-    background-color: #d6fff2;
+    background-color: white;
     text-align: center;
     padding: 50px;
     padding-top: 5px;
@@ -40,7 +40,7 @@
   }
 
   .community-circle.selected {
-    background-color: #FF2E63;
+    background-color: #fbc3c3;
     color: white;
   }
 
@@ -72,8 +72,8 @@
 }
 
   .community-circle.clicked {
-    background-color: red !important;
-    color: #fff;
+    background-color: #fbc3c3 !important;
+    color: black;
   }
   
   button {
@@ -90,6 +90,6 @@
   }
   
   button:hover {
-    background-color: #A29EAD;
+    background-color: #9d9594;
   }
   

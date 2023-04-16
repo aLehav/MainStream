@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import './CommunitySongs.css'
 import { faMusic } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate ,Link } from 'react-router-dom';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -26,6 +27,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const CommunitySongsPage = ({ playlist }) => {
+  const navigate = useNavigate();
   const [songs, setSongs] = useState([]);
   console.log(playlist)
   useEffect(() => {
@@ -49,6 +51,11 @@ const CommunitySongsPage = ({ playlist }) => {
     const votes = songDoc.data().votes;
     await updateDoc(songRef, { votes: increment ? votes + 1 : votes - 1 });
   }
+
+  const handleNextClick = () => {
+    // Navigate to the next page
+    navigate('/main');    
+  };
 
   return (
     
@@ -108,6 +115,8 @@ const CommunitySongsPage = ({ playlist }) => {
       </li>
     ))}
   </ul>
+  <div  style={{ alignContent: "right" }}>
+    <button style={{ color: "white", background: "black"}} onClick={handleNextClick}>Main</button>
   </div>
 </div>
   );

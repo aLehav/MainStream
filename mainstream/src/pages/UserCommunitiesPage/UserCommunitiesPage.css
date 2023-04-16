@@ -1,12 +1,14 @@
 .user-communities-page2 {
     font-family: 'Inter', sans-serif;
     color: black;
-    background-color: #d6fff2;
+    background-color: white;
     text-align: center;
     padding: 50px;
     padding-top: 5px;
     height: 100vh; /* Set the height to cover the entire screen */
     box-sizing: border-box; /* Include padding in the height */
+    align-content: center;
+    align-items: center;
   }
   
   h1 {
@@ -35,7 +37,7 @@
     padding-bottom: calc(33.33%/4 - 60px);
     line-height: 100%;
     text-align: center;
-    background-color: #1f69ff;
+    background-color: #fbc3c3;
     color: white;
     margin: 10px;
     font-size: 28px;
@@ -63,7 +65,7 @@
 .community-grid2 div:nth-child(13),
 .community-grid2 div:nth-child(15),
 .community-grid2 div:nth-child(17) {
-  background-color: #1f69ff;
+  background-color: #fbc3c3;
 }
 
 /* Use a more specific selector to apply hover color to specific squares */
