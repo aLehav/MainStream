@@ -119,6 +119,7 @@ const CommunitySongsPage = ({ playlist }) => {
     <button style={{ color: "white", background: "black"}} onClick={handleNextClick}>Main</button>
   </div>
 </div>
+</div>
   );
 };
 
